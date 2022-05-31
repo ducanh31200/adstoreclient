@@ -1,14 +1,24 @@
-import axios from "axios";
+import axios, { AxiosRequestHeaders } from "axios";
+import { getFromLocalStorage } from "../helper/base.helpers";
 
 const axiosClient = axios.create({
-  baseURL: "",
-  headers: "",
+  baseURL: "https://adstoresv.herokuapp.com/",
+  headers: {
+    "Content-Type": "application/json",
+  },
 });
 
+//Interceptor
 // Add a request interceptor
 axiosClient.interceptors.request.use(
   function (config) {
     // Do something before request is sent
+    const token = getFromLocalStorage("token");
+    const headers: AxiosRequestHeaders = {
+      Authorization: `Bearer ${token}`,
+    };
+    if (token) config.headers = { ...config.headers, ...headers };
+
     return config;
   },
   function (error) {
@@ -22,13 +32,12 @@ axiosClient.interceptors.response.use(
   function (response) {
     // Any status code that lie within the range of 2xx cause this function to trigger
     // Do something with response data
-    return response;
+    return response.data; //thay vi sever tra 1 dong response minh chi lay data nen respone.data
   },
-
   function (error) {
     // Any status codes that falls outside the range of 2xx cause this function to trigger
     // Do something with response error
-    return Promise.reject(error);
+    return error;
   }
 );
 

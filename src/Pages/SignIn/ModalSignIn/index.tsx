@@ -1,12 +1,38 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { Link, useHistory } from "react-router-dom";
+import { ContainerModal } from "../../../Components/common/ContainerModal";
+import useAuth from "../../../store/auth";
+import { notifyError, notifySuccess } from "../../../utils/notify";
+import ModalSignUp from "../../SignUp/ModalSignUp";
 
 interface Props {
   closeModal: () => void;
+  openSignUpModal: () => void;
 }
 
 const ModalSignIn = (props: Props) => {
-  const { closeModal } = props;
+  const { closeModal, openSignUpModal } = props;
+  const [, actionAuth] = useAuth();
+  const { register, handleSubmit } = useForm();
+
+  const handleOpenSignUp = () => {
+    closeModal();
+    openSignUpModal();
+  };
+
+  const submit = async (data: any, e: any) => {
+    e.preventDefault();
+
+    const result = await actionAuth.loginAsync(data);
+    console.log("result", result);
+
+    if (!result) notifyError("Sai tài khoản hoặc mật khẩu");
+    else {
+      notifySuccess("Đăng nhập thành công");
+      // history.push("/");
+    }
+  };
 
   return (
     <div className="login">
@@ -22,7 +48,7 @@ const ModalSignIn = (props: Props) => {
               </h1>
             </Link>
           </div>
-          <form>
+          <form onSubmit={handleSubmit(submit)}>
             <div className="input-group input-email">
               <div className="input-group-prepend">
                 <span className="input-group-text" id="basic-addon1">
@@ -34,7 +60,8 @@ const ModalSignIn = (props: Props) => {
                 className="form-control"
                 placeholder="Email/Phone"
                 aria-describedby="basic-addon1"
-                value={[]}
+                {...register("email_or_phone")}
+                required
               />
             </div>
             <div className="input-group input-password">
@@ -48,6 +75,8 @@ const ModalSignIn = (props: Props) => {
                 className="form-control"
                 placeholder="Password"
                 aria-describedby="basic-addon1"
+                {...register("password")}
+                required
               />
             </div>
             <div className="form-group link-forgot">
@@ -67,12 +96,18 @@ const ModalSignIn = (props: Props) => {
                 </a>
               </div>
             </div>
-            <a href="#" className="btn btn-primary btn-sign-up">
+            <a
+              onClick={handleOpenSignUp}
+              className="btn btn-primary btn-sign-up"
+            >
               Sign up
             </a>
           </form>
         </div>
       </div>
+      {/* <ContainerModal isVisible={showSignUpModal} closeModal={closeSignUpModal}>
+        <ModalSignUp closeModal={closeSignUpModal} />
+      </ContainerModal> */}
     </div>
   );
 };

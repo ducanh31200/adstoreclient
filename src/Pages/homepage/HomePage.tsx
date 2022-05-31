@@ -23,14 +23,17 @@ import { ProductDetail } from "../../Components/common/ContainerModal";
 import { Carousel } from "../../Components/common/ContainerModal";
 import ModalSignIn from "../SignIn/ModalSignIn";
 import ModalSignUp from "../SignUp/ModalSignUp";
+import useAuth from "../../store/auth";
 
 const HomePage = () => {
+  const [stateAuth] = useAuth();
   const [showSignInModal, setSignInModal] = React.useState(false);
   const openSignInModal = () => setSignInModal(true);
   const closeSignInModal = () => setSignInModal(false);
   const [showSignUpModal, setSignUpModal] = React.useState(false);
   const openSignUpModal = () => setSignUpModal(true);
   const closeSignUpModal = () => setSignUpModal(false);
+  console.log("stateAuth", stateAuth.isLoggedIn);
   return (
     <div>
       <div className="container-fluid">
@@ -219,72 +222,29 @@ const HomePage = () => {
                   </Link>
                 </div>
                 <div className="navbar-nav ml-auto py-0">
-                  <a
-                    href="#!"
-                    className="nav-item nav-link"
-                    onClick={openSignInModal}
-                  >
-                    Sign In
-                  </a>
-                  <a
-                    href="#!"
-                    className="nav-item nav-link"
-                    onClick={openSignUpModal}
-                  >
-                    Sign Up
-                  </a>
+                  {stateAuth.isLoggedIn === true ? (
+                    <>Profile</>
+                  ) : (
+                    <>
+                      <a
+                        className="nav-item nav-link"
+                        onClick={openSignInModal}
+                      >
+                        Sign In
+                      </a>
+                      <a
+                        className="nav-item nav-link"
+                        onClick={openSignUpModal}
+                      >
+                        Sign Up
+                      </a>
+                    </>
+                  )}
                 </div>
               </div>
             </nav>
             {/* carousel */}
             <Carousel carousel_items={CAROUSEL_ITEMS} />
-            {/* <div
-              id="header-carousel"
-              className="carousel slide"
-              data-ride="carousel"
-            >
-              <div className="carousel-inner">
-                <div
-                  className="carousel-item active"
-                  style={{ height: "410px" }}
-                >
-                  <img className="img-fluid" src={carousel1} alt="Image" />
-                  <div className="carousel-caption d-flex flex-column align-items-center justify-content-center">
-                    <div className="p-3" style={{ maxWidth: "720px" }}></div>
-                  </div>
-                </div>
-                <div className="carousel-item" style={{ height: "410px" }}>
-                  <img className="img-fluid" src={carousel2} alt="Image" />
-                  <div className="carousel-caption d-flex flex-column align-items-center justify-content-center">
-                    <div className="p-3" style={{ maxHeight: "720px" }}></div>
-                  </div>
-                </div>
-              </div>
-              <a
-                className="carousel-control-prev"
-                href="#header-carousel"
-                data-slide="prev"
-              >
-                <div
-                  className="btn btn-dark"
-                  style={{ height: "40px", width: "45px" }}
-                >
-                  <span className="carousel-control-prev-icon mb-n2"></span>
-                </div>
-              </a>
-              <a
-                className="carousel-control-next"
-                href="#header-carousel"
-                data-slide="next"
-              >
-                <div
-                  className="btn btn-dark"
-                  style={{ height: "40px", width: "45px" }}
-                >
-                  <span className="carousel-control-next-icon mb-n2"></span>
-                </div>
-              </a>
-            </div> */}
           </div>
         </div>
       </div>
@@ -432,32 +392,7 @@ const HomePage = () => {
       <div className="container-fluid py-5">
         <div className="row px-xl-5">
           <div className="col">
-            <div className="owl-carousel vendor-carousel">
-              {/* <div className="vendor-item border p-4">
-                <img src={vendor1} alt="" />
-              </div>
-              <div className="vendor-item border p-4">
-                <img src={vendor2} alt="" />
-              </div>
-              <div className="vendor-item border p-4">
-                <img src={vendor3} alt="" />
-              </div>
-              <div className="vendor-item border p-4">
-                <img src={vendor4} alt="" />
-              </div>
-              <div className="vendor-item border p-4">
-                <img src={vendor5} alt="" />
-              </div>
-              <div className="vendor-item border p-4">
-                <img src={vendor6} alt="" />
-              </div>
-              <div className="vendor-item border p-4">
-                <img src={vendor7} alt="" />
-              </div>
-              <div className="vendor-item border p-4">
-                <img src={vendor8} alt="" />
-              </div> */}
-            </div>
+            <div className="owl-carousel vendor-carousel"></div>
           </div>
         </div>
       </div>
@@ -579,10 +514,16 @@ const HomePage = () => {
         <i className="fa fa-angle-double-up"></i>
       </a>
       <ContainerModal isVisible={showSignInModal} closeModal={closeSignInModal}>
-        <ModalSignIn closeModal={closeSignInModal} />
+        <ModalSignIn
+          closeModal={closeSignInModal}
+          openSignUpModal={openSignUpModal}
+        />
       </ContainerModal>
       <ContainerModal isVisible={showSignUpModal} closeModal={closeSignUpModal}>
-        <ModalSignUp closeModal={closeSignUpModal} />
+        <ModalSignUp
+          closeModal={closeSignUpModal}
+          openSignInModal={openSignInModal}
+        />
       </ContainerModal>
     </div>
   );

@@ -3,10 +3,16 @@ import { Link } from "react-router-dom";
 
 interface Props {
   closeModal: () => void;
+  openSignInModal: () => void;
 }
 
 const ModalSignUp = (props: Props) => {
-  const { closeModal } = props;
+  const { closeModal, openSignInModal } = props;
+
+  const handleOpenSignIn = () => {
+    closeModal();
+    openSignInModal();
+  };
 
   return (
     <div className="sign-up">
@@ -96,7 +102,7 @@ const ModalSignUp = (props: Props) => {
               Sign up
             </button>
             <a
-              href="https://www.facebook.com/anh.doduc.312/"
+              onClick={handleOpenSignIn}
               className="btn btn-primary sign-up-btn-login"
             >
               Login
