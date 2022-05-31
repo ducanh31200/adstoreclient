@@ -8,6 +8,9 @@ type ICategoryCard = {
 
 const CategoryCard = (props: ICategoryCard) => {
   const { image, categoryName, quantity } = props;
+
+  React.useEffect(() => {}, []);
+
   return (
     <div className="col-lg-4 col-md-6 pb-1">
       <div
