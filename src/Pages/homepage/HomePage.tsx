@@ -41,7 +41,7 @@ const HomePage = () => {
   // const [showSignUpModal, setSignUpModal] = React.useState(false);
   // const openSignUpModal = () => setSignUpModal(true);
   // const closeSignUpModal = () => setSignUpModal(false);
-  console.log("stateAuth", stateAuth.isLoggedIn);
+
   return (
     <div>
       <div className="container-fluid">
@@ -283,11 +283,12 @@ const HomePage = () => {
               </div>
             </nav>
             {/* carousel */}
-            <Carousel carousel_items={CAROUSEL_ITEMS} />
           </div>
         </div>
       </div>
-
+      <div>
+        <Carousel carousel_items={CAROUSEL_ITEMS} />
+      </div>
       <div className="container-fluid pt-5">
         <div className="row px-xl-5 pb-3">
           <div className="col-lg-3 col-md-6 col-sm-12 pb-1">

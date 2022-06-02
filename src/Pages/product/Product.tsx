@@ -107,53 +107,37 @@ const Product = (props: Props) => {
               id="navbar-vertical"
               style={{ width: "calc(100% - 30px)", zIndex: "1" }}
             >
-              <div
-                className="navbar-nav w-100 overflow-hidden"
-                style={{ height: "410px" }}
-              >
+              <div className="navbar-nav w-100 overflow-hidden">
                 <div className="nav-item dropdown">
                   <a href="#" className="nav-link" data-toggle="dropdown">
-                    Dresses{" "}
-                    <i className="fa fa-angle-down float-right mt-1"></i>
+                    Phone <i className="fa fa-angle-down float-right mt-1"></i>
                   </a>
                   <div className="dropdown-menu position-absolute bg-secondary border-0 rounded-0 w-100 m-0">
                     <a href="" className="dropdown-item">
-                      Men's Dresses
+                      Iphone
                     </a>
                     <a href="" className="dropdown-item">
-                      Women's Dresses
+                      Samsung
                     </a>
                     <a href="" className="dropdown-item">
-                      Baby's Dresses
+                      Nokia
                     </a>
                   </div>
                 </div>
                 <a href="" className="nav-item nav-link">
-                  Shirts
+                  Laptop
                 </a>
                 <a href="" className="nav-item nav-link">
-                  Jeans
+                  PC
                 </a>
                 <a href="" className="nav-item nav-link">
-                  Swimwear
+                  Máy tính bảng
                 </a>
                 <a href="" className="nav-item nav-link">
-                  Sleepwear
+                  Thiết bị thông minh
                 </a>
                 <a href="" className="nav-item nav-link">
-                  Sportswear
-                </a>
-                <a href="" className="nav-item nav-link">
-                  Jumpsuits
-                </a>
-                <a href="" className="nav-item nav-link">
-                  Blazers
-                </a>
-                <a href="" className="nav-item nav-link">
-                  Jackets
-                </a>
-                <a href="" className="nav-item nav-link">
-                  Shoes
+                  Phụ kiện
                 </a>
               </div>
             </nav>

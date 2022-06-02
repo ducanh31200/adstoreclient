@@ -11,7 +11,9 @@ export const loginAsync =
   (payload: IReqSignIn) =>
   async ({ setState, getState }: Actions) => {
     const result = await authApi.login(payload);
-    // console.log(result);
+
+    console.log("res", result);
+
     if (result.status === 200) {
       saveToLocalStorage("token", result.data.accessToken);
       setState({ ...getState(), isLoggedIn: true });

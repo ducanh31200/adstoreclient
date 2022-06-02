@@ -42,6 +42,8 @@ const ModalSignUpByEmail = (props: Props) => {
                 aria-describedby="basic-addon1"
               />
             </div>
+       
+         
 
             <button
               type="submit"

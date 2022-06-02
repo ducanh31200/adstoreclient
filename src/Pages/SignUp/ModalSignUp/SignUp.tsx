@@ -1,4 +1,5 @@
 import React from "react";
+import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import "./style.css";
 
@@ -8,13 +9,24 @@ interface Props {
 }
 
 const ModalSignUp = (props: Props) => {
+  const { register, handleSubmit } = useForm();
   const { closeModal, openSignInModal } = props;
 
   const handleOpenSignIn = () => {
     closeModal();
     openSignInModal();
   };
-  const handleSignUp = () => {};
+  // const submit = async (data: any, e: any) => {
+  //   e.preventDefault();
+
+  //   const result = await actionAuth.loginAsync(data);
+
+  //   if (!result) notifyError("Sai tài khoản hoặc mật khẩu");
+  //   else {
+  //     notifySuccess("Đăng nhập thành công");
+  //     // history.push("/");
+  //   }
+  // };
   return (
     <div className="sign-up">
       <div className="card sign-up-card">
@@ -89,12 +101,9 @@ const ModalSignUp = (props: Props) => {
                 required
               />
             </div>
-            <a
-              onClick={handleSignUp}
-              className="btn btn-primary sign-up-btn-login btn-sign-up-by-email"
-            >
-              Sign Up
-            </a>
+            <button type="submit" className="btn btn-primary btn-login">
+              Login
+            </button>
             <a
               onClick={handleOpenSignIn}
               className="btn btn-primary sign-up-btn-login btn-sign-up-by-email"

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useHistory } from "react-router-dom";
+import { IReqSignIn } from "../../../api/auth/auth.interface";
 import { ContainerModal } from "../../../Components/common/ContainerModal";
 import useAuth from "../../../store/auth";
 import { notifyError, notifySuccess } from "../../../utils/notify";
@@ -20,17 +21,18 @@ const ModalSignIn = (props: Props) => {
     closeModal();
     openSignUpModal();
   };
-
+  const history = useHistory();
   const submit = async (data: any, e: any) => {
+    localStorage.clear();
     e.preventDefault();
 
     const result = await actionAuth.loginAsync(data);
-    console.log("result", result);
 
     if (!result) notifyError("Sai tài khoản hoặc mật khẩu");
     else {
       notifySuccess("Đăng nhập thành công");
-      // history.push("/");
+      closeModal();
+      history.push("/");
     }
   };
 
