@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "./style.css";
 
 interface Props {
   closeModal: () => void;
@@ -13,7 +14,7 @@ const ModalSignUp = (props: Props) => {
     closeModal();
     openSignInModal();
   };
-
+  const handleSignUp = () => {};
   return (
     <div className="sign-up">
       <div className="card sign-up-card">
@@ -42,31 +43,21 @@ const ModalSignUp = (props: Props) => {
                 aria-describedby="basic-addon1"
               />
             </div>
-            <div className="input-group input-phone">
+            <div className="input-group input-password">
               <div className="input-group-prepend">
                 <span className="input-group-text" id="basic-addon1">
-                  <i className="fas fa-phone-alt"></i>
+                  <i className="fas fa-unlock-alt"></i>
                 </span>
               </div>
               <input
                 type="text"
                 className="form-control"
-                placeholder="Phone"
+                placeholder="OTP"
                 aria-describedby="basic-addon1"
+                // {...register("password")}
+                required
               />
-            </div>
-            <div className="input-group input-address">
-              <div className="input-group-prepend">
-                <span className="input-group-text" id="basic-addon1">
-                  <i className="fas fa-map-marked-alt"></i>
-                </span>
-              </div>
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Address"
-                aria-describedby="basic-addon1"
-              />
+              <a className="btn btn-primary btn-get-otp">Get OTP</a>
             </div>
             <div className="input-group input-password">
               <div className="input-group-prepend">
@@ -79,12 +70,14 @@ const ModalSignUp = (props: Props) => {
                 className="form-control"
                 placeholder="Password"
                 aria-describedby="basic-addon1"
+                //   {...register("password")}
+                required
               />
             </div>
-            <div className="input-group input-confirm-password">
+            <div className="input-group input-password">
               <div className="input-group-prepend">
                 <span className="input-group-text" id="basic-addon1">
-                  <i className="fas fa-check-circle"></i>
+                  <i className="fas fa-unlock-alt"></i>
                 </span>
               </div>
               <input
@@ -92,20 +85,22 @@ const ModalSignUp = (props: Props) => {
                 className="form-control"
                 placeholder="Confirm Password"
                 aria-describedby="basic-addon1"
+                //   {...register("password")}
+                required
               />
             </div>
-
-            <button
-              type="submit"
-              className="btn btn-primary sign-up-btn-sign-up"
+            <a
+              onClick={handleSignUp}
+              className="btn btn-primary sign-up-btn-login btn-sign-up-by-email"
             >
-              Sign up
-            </button>
+              Sign Up
+            </a>
             <a
               onClick={handleOpenSignIn}
-              className="btn btn-primary sign-up-btn-login"
+              className="btn btn-primary sign-up-btn-login btn-sign-up-by-email"
             >
               Login
+              <i className="fa-solid fa-angle-left angle-left"></i>
             </a>
           </form>
         </div>

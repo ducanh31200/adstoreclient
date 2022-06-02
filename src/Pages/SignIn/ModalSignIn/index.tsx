@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useHistory } from "react-router-dom";
 import { ContainerModal } from "../../../Components/common/ContainerModal";
 import useAuth from "../../../store/auth";
 import { notifyError, notifySuccess } from "../../../utils/notify";
-import ModalSignUp from "../../SignUp/ModalSignUp";
+import "./style.css";
 
 interface Props {
   closeModal: () => void;
@@ -15,7 +15,7 @@ const ModalSignIn = (props: Props) => {
   const { closeModal, openSignUpModal } = props;
   const [, actionAuth] = useAuth();
   const { register, handleSubmit } = useForm();
-
+  const [loginType, setloginType] = useState("password");
   const handleOpenSignUp = () => {
     closeModal();
     openSignUpModal();
@@ -32,6 +32,11 @@ const ModalSignIn = (props: Props) => {
       notifySuccess("Đăng nhập thành công");
       // history.push("/");
     }
+  };
+
+  const handleGetValue = (e: any) => {
+    const value = e.target.value;
+    setloginType(value);
   };
 
   return (
@@ -70,17 +75,57 @@ const ModalSignIn = (props: Props) => {
                   <i className="fas fa-unlock-alt"></i>
                 </span>
               </div>
-              <input
-                type="password"
-                className="form-control"
-                placeholder="Password"
-                aria-describedby="basic-addon1"
-                {...register("password")}
-                required
-              />
+              {loginType === "password" ? (
+                <input
+                  type="password"
+                  className="form-control"
+                  placeholder="Password"
+                  aria-describedby="basic-addon1"
+                  {...register("password")}
+                  required
+                />
+              ) : (
+                <>
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="OTP"
+                    aria-describedby="basic-addon1"
+                    {...register("password")}
+                    required
+                  />
+                  <a className="btn btn-primary btn-get-otp">Get OTP</a>
+                </>
+              )}
+            </div>
+            <div className="radio-password-sign-in">
+              <label>
+                <input
+                  type="radio"
+                  id="type_pass"
+                  name="type"
+                  value="password"
+                  defaultChecked
+                  onChange={handleGetValue}
+                />{" "}
+                Password
+              </label>
+
+              <label>
+                <input
+                  type="radio"
+                  id="type_otp"
+                  name="type"
+                  value="otp"
+                  onChange={handleGetValue}
+                />{" "}
+                OTP
+              </label>
             </div>
             <div className="form-group link-forgot">
-              <a href="#">Forgot password</a>
+              <a href="#" style={{ color: "#47c0d0 " }}>
+                Forgot password
+              </a>
             </div>
             <button type="submit" className="btn btn-primary btn-login">
               Login
@@ -98,16 +143,14 @@ const ModalSignIn = (props: Props) => {
             </div>
             <a
               onClick={handleOpenSignUp}
-              className="btn btn-primary btn-sign-up"
+              className="btn btn-primary btn-sign-up btn-sign-up"
             >
               Sign up
+              <i className="fa-solid fa-angle-right angle-right"></i>
             </a>
           </form>
         </div>
       </div>
-      {/* <ContainerModal isVisible={showSignUpModal} closeModal={closeSignUpModal}>
-        <ModalSignUp closeModal={closeSignUpModal} />
-      </ContainerModal> */}
     </div>
   );
 };

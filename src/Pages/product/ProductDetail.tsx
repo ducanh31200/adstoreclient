@@ -88,7 +88,7 @@ const ProductDetail = (props: Props) => {
         </div>
       </div>
       <div className="container-fluid">
-        <div className="row border-top px-xl-5">
+        <div className="row border-top c">
           <div className="col-lg-3 d-none d-lg-block">
             <a
               className="btn shadow-none d-flex align-items-center justify-content-between bg-primary text-white w-100"
