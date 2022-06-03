@@ -14,27 +14,27 @@ interface Props {
 
 const ModalSignIn = (props: Props) => {
   const { closeModal, openSignUpModal } = props;
-  const [, actionAuth] = useAuth();
-  const { register, handleSubmit } = useForm();
+  const [authState, actionAuth] = useAuth();
+  const { register, handleSubmit, reset } = useForm();
   const [loginType, setloginType] = useState("password");
   const handleOpenSignUp = () => {
     closeModal();
     openSignUpModal();
   };
   const history = useHistory();
+
   const submit = async (data: any, e: any) => {
     e.preventDefault();
-
     const result = await actionAuth.loginAsync(data);
 
-    if (!result) notifyError("Sai tài khoản hoặc mật khẩu");
+    if (result === false) notifyError("Sai tài khoản hoặc mật khẩu");
     else {
       notifySuccess("Đăng nhập thành công");
+      reset();
       closeModal();
       history.push("/");
     }
   };
-
   const handleGetValue = (e: any) => {
     const value = e.target.value;
     setloginType(value);

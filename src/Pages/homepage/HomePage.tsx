@@ -21,12 +21,12 @@ import {
 } from "../../constants/base.constants";
 import { ContainerModal } from "../../Components/common/ContainerModal";
 import { ProductDetail } from "../../Components/common/ContainerModal";
-import { Carousel } from "../../Components/common/ContainerModal";
 import ModalSignIn from "../SignIn/ModalSignIn";
 import ModalSignUp from "../SignUp/ModalSignUp/SignUp";
 import useAuth from "../../store/auth";
 import ModalSignUpByEmail from "../SignUp/ModalSignUp/SignUpByEmail";
 import Nav from "../../Components/common/Nav/nav";
+import { Carousel } from "../../Components/common/Carousel/Carousel";
 
 const HomePage = () => {
   const [stateAuth, actionAuth] = useAuth();
@@ -42,7 +42,8 @@ const HomePage = () => {
   // const [showSignUpModal, setSignUpModal] = React.useState(false);
   // const openSignUpModal = () => setSignUpModal(true);
   // const closeSignUpModal = () => setSignUpModal(false);
-
+  console.log(stateAuth.isLoggedIn);
+  console.log(stateAuth.data.email);
   const handleLogout = () => {
     actionAuth.logoutAsync();
   };
@@ -128,136 +129,6 @@ const HomePage = () => {
       </div>
       {/* Nav */}
       <Nav />
-      {/* <div className="container-fluid mb-5">
-        <div className="row border-top px-xl-5">
-          <div className="col-lg-3 d-none d-lg-block">
-            <a
-              className="btn shadow-none d-flex align-items-center justify-content-between bg-primary text-white w-100"
-              data-toggle="collapse"
-              href="#navbar-vertical"
-              style={{ height: "65px", marginTop: "-1px", padding: "0 30px" }}
-            >
-              <h6 className="m-0">Categories</h6>
-              <i className="fa fa-angle-down text-dark"></i>
-            </a>
-            <nav
-              className="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0 bg-light"
-              id="navbar-vertical"
-              style={{ width: "calc(100% - 30px)", zIndex: "10" }}
-            >
-
-            </nav>
-          </div>
-          <div className="col-lg-9">
-            <nav className="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0">
-              <a href="" className="text-decoration-none d-block d-lg-none">
-                <h1 className="m-0 display-5 font-weight-semi-bold">
-                  <span className="text-primary font-weight-bold border px-3 mr-1">
-                    AD
-                  </span>
-                  Store
-                </h1>
-              </a>
-              <button
-                type="button"
-                className="navbar-toggler"
-                data-toggle="collapse"
-                data-target="#navbarCollapse"
-              >
-                <span className="navbar-toggler-icon"></span>
-              </button>
-              <div
-                className="collapse navbar-collapse justify-content-between"
-                id="navbarCollapse"
-              >
-                <div className="navbar-nav mr-auto py-0">
-                  <Link to="/" className="nav-item nav-link active">
-                    Home
-                  </Link>
-                  <Link to="/product" className="nav-item nav-link">
-                    Product
-                  </Link>
-                  <Link to="/productDetail" className="nav-item nav-link">
-                    Product Detail
-                  </Link>
-                  <div className="nav-item dropdown">
-                    <a
-                      href="#"
-                      className="nav-link dropdown-toggle"
-                      data-toggle="dropdown"
-                    >
-                      Pages
-                    </a>
-                    <div className="dropdown-menu rounded-0 m-0">
-                      <Link to="/cart" className="nav-item nav-link">
-                        Cart
-                      </Link>
-                      <Link to="/bill" className="nav-item nav-link">
-                        Bill
-                      </Link>
-                    </div>
-                  </div>
-                  <Link to="/contact" className="nav-item nav-link">
-                    Contact
-                  </Link>
-                </div>
-                <div className="navbar-nav ml-auto py-0">
-                  {stateAuth.isLoggedIn === true ? (
-                    <div className="wrap_menuAvatar">
-                      <div className="iconAvatar">
-                        <img
-                          src="https://scontent.fsgn5-6.fna.fbcdn.net/v/t1.6435-9/134454217_2852424525075613_6158247242724837492_n.jpg?_nc_cat=108&ccb=1-6&_nc_sid=09cbfe&_nc_ohc=Ya9nhauGKLYAX97Kod5&_nc_ht=scontent.fsgn5-6.fna&oh=00_AT_T4VaGY04lpzSwagxghy1OmuEJ9UE-KicN8jwgUQElHQ&oe=62ABD617"
-                          className="w-full h-full object-cover rounded-[50%] user_avatar"
-                          alt="avatar"
-                        />
-                      </div>
-                      <div className="wrap_contentHover">
-                        <div className="contentHover py-[16px]">
-                          <Link
-                            to="/personal"
-                            className="menuProfile menuLinkHover"
-                          >
-                            Thông tin cá nhân
-                          </Link>
-                          <Link
-                            to="/thong-tin-ca-nhan"
-                            className="menuProfile menuLinkHover"
-                          >
-                            Tin nhắn
-                          </Link>
-                          <div className="lineMenu"></div>
-                          <a
-                            className="menuProfile menuLinkHover text-red-500 font-bold"
-                            onClick={handleLogout}
-                          >
-                            Đăng xuất
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  ) : (
-                    <>
-                      <a
-                        className="nav-item nav-link"
-                        onClick={openSignInModal}
-                      >
-                        Sign In
-                      </a>
-                      <a
-                        className="nav-item nav-link"
-                        onClick={openSignUpModal}
-                      >
-                        Sign Up
-                      </a>
-                    </>
-                  )}
-                </div>
-              </div>
-            </nav>
-            
-          </div>
-        </div>
-      </div> */}
 
       {/* carousel */}
       <div>

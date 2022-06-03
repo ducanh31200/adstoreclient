@@ -22,6 +22,7 @@ const Nav = () => {
   };
   const location = useLocation();
 
+  const user = React.useEffect(() => {});
   return (
     <div className="container-fluid mb-5">
       <div className="row border-top px-xl-5">
@@ -161,13 +162,18 @@ const Nav = () => {
               <div className="navbar-nav ml-auto py-0">
                 {stateAuth.isLoggedIn === true ? (
                   <div className="wrap_menuAvatar">
-                    <div className="iconAvatar">
-                      <img
-                        src="https://scontent.fsgn5-6.fna.fbcdn.net/v/t1.6435-9/134454217_2852424525075613_6158247242724837492_n.jpg?_nc_cat=108&ccb=1-6&_nc_sid=09cbfe&_nc_ohc=Ya9nhauGKLYAX97Kod5&_nc_ht=scontent.fsgn5-6.fna&oh=00_AT_T4VaGY04lpzSwagxghy1OmuEJ9UE-KicN8jwgUQElHQ&oe=62ABD617"
-                        className="w-full h-full object-cover rounded-[50%] user_avatar"
-                        alt="avatar"
-                      />
-                    </div>
+                    <i className="fa-solid fa-user " />
+                    &emsp;
+                    <span>
+                      {stateAuth.data.name !== ""
+                        ? stateAuth.data.name
+                        : stateAuth.data.email !== ""
+                        ? stateAuth.data.email.substring(
+                            0,
+                            stateAuth.data.email.lastIndexOf("@")
+                          )
+                        : stateAuth.data.phone}
+                    </span>
                     <div className="wrap_contentHover">
                       <div className="contentHover py-[16px]">
                         <Link
@@ -205,7 +211,6 @@ const Nav = () => {
               </div>
             </div>
           </nav>
-          {/* carousel */}
         </div>
       </div>
       <ContainerModal isVisible={showSignInModal} closeModal={closeSignInModal}>

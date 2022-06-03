@@ -1,7 +1,6 @@
 import { State } from ".";
 import { IReqSignIn } from "../../api/auth/auth.interface";
 import authApi from "../../api/auth/authApi";
-
 import { saveToLocalStorage } from "../../helper/base.helpers";
 import { notifyError, notifySuccess } from "../../utils/notify";
 
@@ -11,13 +10,9 @@ export const loginAsync =
   (payload: IReqSignIn) =>
   async ({ setState, getState }: Actions) => {
     const result = await authApi.login(payload);
-
     console.log("res", result);
-    console.log("res.data", result.data.accessToken);
     if (result.status === 200) {
-      saveToLocalStorage("token", result.data.accessToken);
-
-      setState({ ...getState(), isLoggedIn: true });
+      setState({ ...getState(), isLoggedIn: true, data: result.data.info });
       return true;
     }
     return false;
