@@ -26,9 +26,10 @@ import ModalSignIn from "../SignIn/ModalSignIn";
 import ModalSignUp from "../SignUp/ModalSignUp/SignUp";
 import useAuth from "../../store/auth";
 import ModalSignUpByEmail from "../SignUp/ModalSignUp/SignUpByEmail";
+import Nav from "../../Components/common/Nav/nav";
 
 const HomePage = () => {
-  const [stateAuth] = useAuth();
+  const [stateAuth, actionAuth] = useAuth();
   const [showSignInModal, setSignInModal] = React.useState(false);
   const openSignInModal = () => setSignInModal(true);
   const closeSignInModal = () => setSignInModal(false);
@@ -41,6 +42,10 @@ const HomePage = () => {
   // const [showSignUpModal, setSignUpModal] = React.useState(false);
   // const openSignUpModal = () => setSignUpModal(true);
   // const closeSignUpModal = () => setSignUpModal(false);
+
+  const handleLogout = () => {
+    actionAuth.logoutAsync();
+  };
 
   return (
     <div>
@@ -121,8 +126,9 @@ const HomePage = () => {
           </div>
         </div>
       </div>
-
-      <div className="container-fluid mb-5">
+      {/* Nav */}
+      <Nav />
+      {/* <div className="container-fluid mb-5">
         <div className="row border-top px-xl-5">
           <div className="col-lg-3 d-none d-lg-block">
             <a
@@ -135,45 +141,11 @@ const HomePage = () => {
               <i className="fa fa-angle-down text-dark"></i>
             </a>
             <nav
-              className="collapse show navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0"
+              className="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0 bg-light"
               id="navbar-vertical"
+              style={{ width: "calc(100% - 30px)", zIndex: "10" }}
             >
-              <div
-                className="navbar-nav w-100 overflow-hidden"
-                style={{ height: "410px" }}
-              >
-                <div className="nav-item dropdown">
-                  <a href="#" className="nav-link" data-toggle="dropdown">
-                    Phone <i className="fa fa-angle-down float-right mt-1"></i>
-                  </a>
-                  <div className="dropdown-menu position-absolute bg-secondary border-0 rounded-0 w-100 m-0">
-                    <a href="" className="dropdown-item">
-                      Iphone
-                    </a>
-                    <a href="" className="dropdown-item">
-                      Samsung
-                    </a>
-                    <a href="" className="dropdown-item">
-                      Nokia
-                    </a>
-                  </div>
-                </div>
-                <a href="" className="nav-item nav-link">
-                  Laptop
-                </a>
-                <a href="" className="nav-item nav-link">
-                  PC
-                </a>
-                <a href="" className="nav-item nav-link">
-                  Máy tính bảng
-                </a>
-                <a href="" className="nav-item nav-link">
-                  Thiết bị thông minh
-                </a>
-                <a href="" className="nav-item nav-link">
-                  Phụ kiện
-                </a>
-              </div>
+
             </nav>
           </div>
           <div className="col-lg-9">
@@ -256,7 +228,7 @@ const HomePage = () => {
                           <div className="lineMenu"></div>
                           <a
                             className="menuProfile menuLinkHover text-red-500 font-bold"
-                            //  onClick={handleLogout}
+                            onClick={handleLogout}
                           >
                             Đăng xuất
                           </a>
@@ -282,10 +254,12 @@ const HomePage = () => {
                 </div>
               </div>
             </nav>
-            {/* carousel */}
+            
           </div>
         </div>
-      </div>
+      </div> */}
+
+      {/* carousel */}
       <div>
         <Carousel carousel_items={CAROUSEL_ITEMS} />
       </div>
@@ -553,33 +527,6 @@ const HomePage = () => {
       <a href="#" className="btn btn-primary back-to-top">
         <i className="fa fa-angle-double-up"></i>
       </a>
-      <ContainerModal isVisible={showSignInModal} closeModal={closeSignInModal}>
-        <ModalSignIn
-          closeModal={closeSignInModal}
-          openSignUpModal={openSignUpModal}
-        />
-      </ContainerModal>
-      <ContainerModal isVisible={showSignUpModal} closeModal={closeSignUpModal}>
-        <ModalSignUp
-          closeModal={closeSignUpModal}
-          openSignInModal={openSignInModal}
-        />
-      </ContainerModal>
-      <ContainerModal
-        isVisible={showSignUpByEmailModal}
-        closeModal={closeSignUpByEmailModal}
-      >
-        <ModalSignUpByEmail
-          closeModal={closeSignUpByEmailModal}
-          openSignUpModal={openSignUpModal}
-        />
-      </ContainerModal>
-      {/* <ContainerModal isVisible={showSignUpModal} closeModal={closeSignUpModal}>
-        <ModalSignUp
-          closeModal={closeSignUpModal}
-          openSignInModal={openSignInModal}
-        />
-      </ContainerModal> */}
     </div>
   );
 };

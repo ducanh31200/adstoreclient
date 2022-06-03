@@ -6,6 +6,7 @@ function App() {
   return (
     <div className="App">
       <Router />
+
       <Toaster
         reverseOrder={false}
         position="top-right"

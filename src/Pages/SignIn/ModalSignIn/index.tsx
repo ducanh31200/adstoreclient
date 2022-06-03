@@ -23,7 +23,6 @@ const ModalSignIn = (props: Props) => {
   };
   const history = useHistory();
   const submit = async (data: any, e: any) => {
-    localStorage.clear();
     e.preventDefault();
 
     const result = await actionAuth.loginAsync(data);

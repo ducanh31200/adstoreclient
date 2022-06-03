@@ -9,6 +9,7 @@ import product7 from "../../img/airpods.jpg";
 import product8 from "../../img/cpu.jpg";
 import payment from "../../img/payments.png";
 import { Link } from "react-router-dom";
+import Nav from "../../Components/common/Nav/nav";
 type Props = {};
 const Product = (props: Props) => {
   return (
@@ -89,125 +90,9 @@ const Product = (props: Props) => {
           </div>
         </div>
       </div>
+      {/* Nav */}
 
-      <div className="container-fluid">
-        <div className="row border-top px-xl-5">
-          <div className="col-lg-3 d-none d-lg-block">
-            <a
-              className="btn shadow-none d-flex align-items-center justify-content-between bg-primary text-white w-100"
-              data-toggle="collapse"
-              href="#navbar-vertical"
-              style={{ height: "65px", marginTop: "-1px", padding: "0 30px" }}
-            >
-              <h6 className="m-0">Categories</h6>
-              <i className="fa fa-angle-down text-dark"></i>
-            </a>
-            <nav
-              className="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0 bg-light"
-              id="navbar-vertical"
-              style={{ width: "calc(100% - 30px)", zIndex: "1" }}
-            >
-              <div className="navbar-nav w-100 overflow-hidden">
-                <div className="nav-item dropdown">
-                  <a href="#" className="nav-link" data-toggle="dropdown">
-                    Phone <i className="fa fa-angle-down float-right mt-1"></i>
-                  </a>
-                  <div className="dropdown-menu position-absolute bg-secondary border-0 rounded-0 w-100 m-0">
-                    <a href="" className="dropdown-item">
-                      Iphone
-                    </a>
-                    <a href="" className="dropdown-item">
-                      Samsung
-                    </a>
-                    <a href="" className="dropdown-item">
-                      Nokia
-                    </a>
-                  </div>
-                </div>
-                <a href="" className="nav-item nav-link">
-                  Laptop
-                </a>
-                <a href="" className="nav-item nav-link">
-                  PC
-                </a>
-                <a href="" className="nav-item nav-link">
-                  Máy tính bảng
-                </a>
-                <a href="" className="nav-item nav-link">
-                  Thiết bị thông minh
-                </a>
-                <a href="" className="nav-item nav-link">
-                  Phụ kiện
-                </a>
-              </div>
-            </nav>
-          </div>
-          <div className="col-lg-9">
-            <nav className="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0">
-              <a href="" className="text-decoration-none d-block d-lg-none">
-                <h1 className="m-0 display-5 font-weight-semi-bold">
-                  <span className="text-primary font-weight-bold border px-3 mr-1">
-                    AD
-                  </span>
-                  Store
-                </h1>
-              </a>
-              <button
-                type="button"
-                className="navbar-toggler"
-                data-toggle="collapse"
-                data-target="#navbarCollapse"
-              >
-                <span className="navbar-toggler-icon"></span>
-              </button>
-              <div
-                className="collapse navbar-collapse justify-content-between"
-                id="navbarCollapse"
-              >
-                <div className="navbar-nav mr-auto py-0">
-                  <Link to="/" className="nav-item nav-link">
-                    Home
-                  </Link>
-                  <Link to="/product" className="nav-item nav-link active">
-                    Product
-                  </Link>
-                  <Link to="/productDetail" className="nav-item nav-link">
-                    Product Detail
-                  </Link>
-                  <div className="nav-item dropdown">
-                    <a
-                      href="#"
-                      className="nav-link dropdown-toggle"
-                      data-toggle="dropdown"
-                    >
-                      Pages
-                    </a>
-                    <div className="dropdown-menu rounded-0 m-0">
-                      <Link to="/cart" className="nav-item nav-link">
-                        Cart
-                      </Link>
-                      <Link to="/bill" className="nav-item nav-link">
-                        Bill
-                      </Link>
-                    </div>
-                  </div>
-                  <Link to="/contact" className="nav-item nav-link">
-                    Contact
-                  </Link>
-                </div>
-                <div className="navbar-nav ml-auto py-0">
-                  <a href="" className="nav-item nav-link">
-                    Login
-                  </a>
-                  <a href="" className="nav-item nav-link">
-                    Register
-                  </a>
-                </div>
-              </div>
-            </nav>
-          </div>
-        </div>
-      </div>
+      <Nav />
 
       <div className="container-fluid bg-secondary mb-5">
         <div
@@ -237,7 +122,7 @@ const Product = (props: Props) => {
                   <input
                     type="checkbox"
                     className="custom-control-input"
-                    checked
+                    defaultChecked
                     id="price-all"
                   />
                   <label className="custom-control-label" htmlFor="price-all">
@@ -310,7 +195,7 @@ const Product = (props: Props) => {
                   <input
                     type="checkbox"
                     className="custom-control-input"
-                    checked
+                    defaultChecked
                     id="color-all/"
                   />
                   <label className="custom-control-label" htmlFor="price-all">
@@ -383,7 +268,7 @@ const Product = (props: Props) => {
                   <input
                     type="checkbox"
                     className="custom-control-input"
-                    checked
+                    defaultChecked
                     id="size-all"
                   />
                   <label className="custom-control-label" htmlFor="size-all">
