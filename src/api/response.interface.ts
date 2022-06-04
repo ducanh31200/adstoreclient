@@ -1,6 +1,7 @@
 interface ResponseInstant {
   message: string;
   status: number;
+  headers?: any;
 }
 
 export interface ReturnReponse<T> extends ResponseInstant {

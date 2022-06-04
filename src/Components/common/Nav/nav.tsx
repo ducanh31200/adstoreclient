@@ -21,8 +21,6 @@ const Nav = () => {
     actionAuth.logoutAsync();
   };
   const location = useLocation();
-
-  const user = React.useEffect(() => {});
   return (
     <div className="container-fluid mb-5">
       <div className="row border-top px-xl-5">
@@ -165,14 +163,14 @@ const Nav = () => {
                     <i className="fa-solid fa-user " />
                     &emsp;
                     <span>
-                      {stateAuth.data.name !== ""
+                      {stateAuth.data?.name
                         ? stateAuth.data.name
-                        : stateAuth.data.email !== ""
+                        : stateAuth.data?.email
                         ? stateAuth.data.email.substring(
                             0,
                             stateAuth.data.email.lastIndexOf("@")
                           )
-                        : stateAuth.data.phone}
+                        : stateAuth.data?.phone}
                     </span>
                     <div className="wrap_contentHover">
                       <div className="contentHover py-[16px]">

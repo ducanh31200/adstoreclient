@@ -30,24 +30,10 @@ import { Carousel } from "../../Components/common/Carousel/Carousel";
 
 const HomePage = () => {
   const [stateAuth, actionAuth] = useAuth();
-  const [showSignInModal, setSignInModal] = React.useState(false);
-  const openSignInModal = () => setSignInModal(true);
-  const closeSignInModal = () => setSignInModal(false);
-  const [showSignUpModal, setSignUpModal] = React.useState(false);
-  const openSignUpModal = () => setSignUpModal(true);
-  const closeSignUpModal = () => setSignUpModal(false);
-  const [showSignUpByEmailModal, setSignUpByEmailModal] = React.useState(false);
-  const openSignUpByEmailModal = () => setSignUpByEmailModal(true);
-  const closeSignUpByEmailModal = () => setSignUpByEmailModal(false);
-  // const [showSignUpModal, setSignUpModal] = React.useState(false);
-  // const openSignUpModal = () => setSignUpModal(true);
-  // const closeSignUpModal = () => setSignUpModal(false);
-  console.log(stateAuth.isLoggedIn);
-  console.log(stateAuth.data.email);
+
   const handleLogout = () => {
     actionAuth.logoutAsync();
   };
-
   return (
     <div>
       <div className="container-fluid">

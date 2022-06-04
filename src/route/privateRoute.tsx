@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import { Redirect, Route, RouteProps, useHistory } from "react-router-dom";
 import { LoadingLMS } from "../Components/common/Loading/loading";
+import { getFromLocalStorage } from "../helper/base.helpers";
 import useAuth from "../store/auth";
 
 interface IPrivateRoute extends RouteProps {
@@ -17,10 +18,12 @@ export const PrivateRoute = (props: IPrivateRoute) => {
   const [acceptRoute, setAcceptRoute] = useState(false);
 
   const fetchAuth = async () => {
-    const res = await actionAuth.getUserAsync();
-    // console.log("123", res);
-    if (!res) {
-      history.push("/login");
+    const token = getFromLocalStorage("accessToken");
+    console.log("token", token);
+    if (!token) {
+      history.push("/");
+    } else {
+      const res = await actionAuth.getUserAsync();
     }
     setAcceptRoute(true);
   };

@@ -10,29 +10,31 @@ export const loginAsync =
   (payload: IReqSignIn) =>
   async ({ setState, getState }: Actions) => {
     const result = await authApi.login(payload);
-    console.log("res", result);
+    console.log(result.data.data);
     if (result.status === 200) {
-      setState({ ...getState(), isLoggedIn: true, data: result.data.info });
+      saveToLocalStorage("accessToken", result.data.accessToken);
+      setState({ ...getState(), isLoggedIn: true, data: result.data.data });
+      notifySuccess("Đăng nhập thành công");
+      return true;
+    }
+    notifyError("Sai tài khoản hoặc mật khẩu");
+    return false;
+  };
+
+export const getUserAsync =
+  () =>
+  async ({ setState, getState }: Actions) => {
+    const result = await authApi.getUser();
+
+    if (result.status === 200) {
+      setState({ ...getState(), isLoggedIn: true, data: result.data.data });
       return true;
     }
     return false;
   };
-export const getUserAsync =
-  () =>
-  async ({ setState, getState }: Actions) => {
-    // const result = await authApi.getUser();
-    // // console.log("123", result);
-    // if (result.status === 200) {
-    //   setState({ ...getState(), auth: result.data });
-    //   return true;
-    // }
-    // return false;
-    setState({ ...getState(), isLoggedIn: true });
-    return true;
-  };
 export const logoutAsync =
   () =>
   ({ setState, getState }: Actions) => {
-    localStorage.removeItem("token");
+    localStorage.removeItem("accessToken");
     setState({ ...getState(), isLoggedIn: false });
   };
