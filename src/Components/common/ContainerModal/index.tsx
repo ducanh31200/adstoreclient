@@ -7,7 +7,7 @@ interface IProps {
   closeModal: (value: boolean) => void;
 }
 
-export const ProductDetail = ({ product }: { product: any }) => {
+export const ProductCard = ({ product }: { product: any }) => {
   return (
     <div className="col-lg-3 col-md-6 col-sm-12 pb-1">
       <div className="card product-item border-0 mb-4">

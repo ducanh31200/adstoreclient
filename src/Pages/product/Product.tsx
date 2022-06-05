@@ -1,17 +1,19 @@
 import React from "react";
+import { Link, useParams } from "react-router-dom";
+import Nav from "../../Components/common/Nav/nav";
+import product7 from "../../img/airpods.jpg";
+import product5 from "../../img/applewatch.jpg";
+import product8 from "../../img/cpu.jpg";
+import product6 from "../../img/ipad.jpg";
 import product1 from "../../img/iphone13.jpg";
-import product2 from "../../img/samsungs22.jpg";
 import product3 from "../../img/laptopasus.jpg";
 import product4 from "../../img/macbook.jpg";
-import product5 from "../../img/applewatch.jpg";
-import product6 from "../../img/ipad.jpg";
-import product7 from "../../img/airpods.jpg";
-import product8 from "../../img/cpu.jpg";
 import payment from "../../img/payments.png";
-import { Link } from "react-router-dom";
-import Nav from "../../Components/common/Nav/nav";
-type Props = {};
+import product2 from "../../img/samsungs22.jpg";
+type Props = { name: string; id: string };
 const Product = (props: Props) => {
+  const params = useParams();
+  console.log("params", params);
   return (
     <div>
       <div className="container-fluid">

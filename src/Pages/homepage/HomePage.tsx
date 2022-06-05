@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import vendor1 from "../../img/amd.jpg";
 import vendor2 from "../../img/apple.jpg";
 import vendor3 from "../../img/asus.png";
@@ -15,25 +15,30 @@ import payment from "../../img/payments.png";
 import { Link } from "react-router-dom";
 import CategoryCard from "../../Components/pages/homepage/CategoryCard";
 import {
-  CATEGORIES,
   FAKE_PRODUCT_DATA,
   CAROUSEL_ITEMS,
 } from "../../constants/base.constants";
-import { ContainerModal } from "../../Components/common/ContainerModal";
-import { ProductDetail } from "../../Components/common/ContainerModal";
-import ModalSignIn from "../SignIn/ModalSignIn";
-import ModalSignUp from "../SignUp/ModalSignUp/SignUp";
+import { ProductCard } from "../../Components/common/ContainerModal";
+
 import useAuth from "../../store/auth";
-import ModalSignUpByEmail from "../SignUp/ModalSignUp/SignUpByEmail";
 import Nav from "../../Components/common/Nav/nav";
 import { Carousel } from "../../Components/common/Carousel/Carousel";
+import categoryApi from "../../api/category/category";
 
 const HomePage = () => {
+  const [listCategory, setListCategory] = useState<Array<any>>([]);
   const [stateAuth, actionAuth] = useAuth();
-
+  React.useEffect(() => {
+    (async () => {
+      const list = await categoryApi.list();
+      console.log(list);
+      setListCategory(list.data.data);
+    })();
+  });
   const handleLogout = () => {
     actionAuth.logoutAsync();
   };
+
   return (
     <div>
       <div className="container-fluid">
@@ -164,12 +169,13 @@ const HomePage = () => {
       {/* Category list */}
       <div className="container-fluid pt-5">
         <div className="row px-xl-5 pb-3">
-          {CATEGORIES.map((item, index) => (
+          {listCategory.map((item: any, index: number) => (
             <CategoryCard
               key={index}
-              image={item.image}
-              quantity={item.quantity}
-              categoryName={item.categoryName}
+              _id={item._id}
+              image_url={item.image_url}
+              products_length={item.products_length}
+              name={item.name}
             />
           ))}
         </div>
@@ -217,7 +223,7 @@ const HomePage = () => {
         {/* aaaaaaaaaaaaaaaaaaaaaaaa */}
         <div className="row px-xl-5 pb-3">
           {FAKE_PRODUCT_DATA.map((product, index) => (
-            <ProductDetail key={index} product={product} />
+            <ProductCard key={index} product={product} />
           ))}
         </div>
       </div>
@@ -255,7 +261,7 @@ const HomePage = () => {
         </div>
         <div className="row px-xl-5 pb-3">
           {FAKE_PRODUCT_DATA.map((product, index) => (
-            <ProductDetail key={index} product={product} />
+            <ProductCard key={index} product={product} />
           ))}
         </div>
       </div>

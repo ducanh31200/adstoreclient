@@ -15,6 +15,7 @@ function Router() {
       <Switch>
         <PrivateRoute path="/" component={HomePage} exact />
         <PrivateRoute path="/product" component={Product} exact />
+        <PrivateRoute path="/product/:name" component={Product} exact />
         <PrivateRoute path="/productDetail" component={ProductDetail} exact />
         <PrivateRoute path="/cart" component={Cart} exact />
         <PrivateRoute path="/bill" component={Bill} exact />
