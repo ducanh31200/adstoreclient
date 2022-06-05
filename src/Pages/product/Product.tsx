@@ -12,8 +12,15 @@ import payment from "../../img/payments.png";
 import product2 from "../../img/samsungs22.jpg";
 type Props = { name: string; id: string };
 const Product = (props: Props) => {
-  const params = useParams();
+  const params = useParams<any>();
   console.log("params", params);
+  const { name } = params;
+  React.useEffect(() => {
+    if (name) {
+      // API have name here
+    }
+  }, []);
+
   return (
     <div>
       <div className="container-fluid">
