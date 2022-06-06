@@ -1,32 +1,53 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import useAuth from "../../../store/auth";
+import { notifyError, notifySuccess } from "../../../utils/notify";
 import "./style.css";
 
 interface Props {
   closeModal: () => void;
   openSignInModal: () => void;
 }
-
+// const history = useHistory();
 const ModalSignUp = (props: Props) => {
-  const { register, handleSubmit } = useForm();
+  const [authState, actionAuth] = useAuth();
+  const { register, handleSubmit, reset } = useForm();
   const { closeModal, openSignInModal } = props;
 
   const handleOpenSignIn = () => {
     closeModal();
     openSignInModal();
   };
-  // const submit = async (data: any, e: any) => {
-  //   e.preventDefault();
 
-  //   const result = await actionAuth.loginAsync(data);
+  const handleGetOTP = async () => {
+    const emailSignUp = (document.getElementById("email") as HTMLInputElement)
+      .value;
+    if (emailSignUp === "") {
+      handleSubmit;
+      return;
+    } else {
+      const mess = await actionAuth.getOTPAsync({
+        email_or_phone: emailSignUp,
+      });
+      mess
+        ? notifySuccess(mess)
+        : notifyError("Gửi mã OTP thất bại, vui lòng thử lại !");
+      console.log("resOTP", mess);
+    }
+  };
 
-  //   if (!result) notifyError("Sai tài khoản hoặc mật khẩu");
-  //   else {
-  //     notifySuccess("Đăng nhập thành công");
-  //     // history.push("/");
-  //   }
-  // };
+  const submit = async (data: any, e: any) => {
+    e.preventDefault();
+
+    const result = await actionAuth.signUpAsync(data);
+
+    if (!result) notifyError("Sai tài khoản hoặc mật khẩu");
+    else {
+      notifySuccess("Đăng nhập thành công");
+      // history.push("/");
+    }
+  };
   return (
     <div className="sign-up">
       <div className="card sign-up-card">
@@ -41,7 +62,7 @@ const ModalSignUp = (props: Props) => {
               </h1>
             </Link>
           </div>
-          <form>
+          <form onSubmit={handleSubmit(submit)}>
             <div className="input-group input-email">
               <div className="input-group-prepend">
                 <span className="input-group-text" id="basic-addon1">
@@ -50,9 +71,12 @@ const ModalSignUp = (props: Props) => {
               </div>
               <input
                 type="text"
+                id="email"
                 className="form-control"
                 placeholder="Email"
+                {...register("email_or_phone")}
                 aria-describedby="basic-addon1"
+                required
               />
             </div>
             <div className="input-group input-password">
@@ -66,10 +90,16 @@ const ModalSignUp = (props: Props) => {
                 className="form-control"
                 placeholder="OTP"
                 aria-describedby="basic-addon1"
-                // {...register("password")}
+                {...register("code")}
                 required
               />
-              <a className="btn btn-primary btn-get-otp">Get OTP</a>
+              <button
+                type="button"
+                onClick={handleGetOTP}
+                className="btn btn-primary btn-get-otp"
+              >
+                Get OTP
+              </button>
             </div>
             <div className="input-group input-password">
               <div className="input-group-prepend">
@@ -78,11 +108,12 @@ const ModalSignUp = (props: Props) => {
                 </span>
               </div>
               <input
+                id="pass"
                 type="password"
                 className="form-control"
                 placeholder="Password"
                 aria-describedby="basic-addon1"
-                //   {...register("password")}
+                {...register("password")}
                 required
               />
             </div>
@@ -93,22 +124,22 @@ const ModalSignUp = (props: Props) => {
                 </span>
               </div>
               <input
+                id="confirm-pass"
                 type="password"
                 className="form-control"
                 placeholder="Confirm Password"
                 aria-describedby="basic-addon1"
-                //   {...register("password")}
                 required
               />
             </div>
             <button type="submit" className="btn btn-primary btn-login">
-              Login
+              Sign Up
             </button>
             <a
               onClick={handleOpenSignIn}
               className="btn btn-primary sign-up-btn-login btn-sign-up-by-email"
             >
-              Login
+              Sign in
               <i className="fa-solid fa-angle-left angle-left"></i>
             </a>
           </form>

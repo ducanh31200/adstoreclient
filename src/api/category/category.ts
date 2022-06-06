@@ -7,10 +7,6 @@ const categoryApi = {
     const url = "category/list";
     return axiosClient.get(url);
   },
-  getUser(): Promise<ReturnReponse<any>> {
-    const url = "default/info"; //params
-    return axiosClient.get(url);
-  },
   // signup(data: IReqSignUp): Promise<ReturnReponse<IResLogin>> {
   //   const url = "default/login"; //params
   //   return axiosClient.post(url, data);

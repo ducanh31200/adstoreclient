@@ -34,7 +34,7 @@ const HomePage = () => {
       console.log(list);
       setListCategory(list.data.data);
     })();
-  });
+  }, []);
   const handleLogout = () => {
     actionAuth.logoutAsync();
   };

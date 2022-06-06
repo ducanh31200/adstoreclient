@@ -17,15 +17,6 @@ import carousel2 from "../img/asus.png";
 import carousel3 from "../img/samsung.png";
 import carousel4 from "../img/iphone13.jpg";
 
-export const CATEGORIES = [
-  { quantity: 15, image: cat1, categoryName: "Phone" },
-  { quantity: 15, image: cat2, categoryName: "Laptop" },
-  { quantity: 15, image: cat3, categoryName: "PC" },
-  { quantity: 15, image: cat4, categoryName: "Máy tính bảng" },
-  { quantity: 15, image: cat5, categoryName: "Thiết bị thông minh" },
-  { quantity: 15, image: cat6, categoryName: "Phụ kiện" },
-];
-
 export const FAKE_PRODUCT_DATA = [
   { name: "Iphones", image: product1, price: 123 },
   { name: "Nokias", image: product2, price: 123 },

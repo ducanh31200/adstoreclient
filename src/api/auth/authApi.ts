@@ -1,11 +1,16 @@
 // import { ADMIN_MODEL, USER_MODEL } from "../../models/user.model";
 import axiosClient from "../axiosClient";
 import { ReturnReponse } from "../response.interface";
-import { IReqSignIn, IReqEmailOtp, IReqSignUp } from "./auth.interface";
-import { IResLogin } from "./auth.type";
+import {
+  IReqSignIn,
+  IReqEmailOtp,
+  IReqSignUp,
+  IReqGetOTP,
+} from "./auth.interface";
+import { IResGetOTP, IResLogin } from "./auth.type";
 
 const authApi = {
-  login(data: IReqSignIn): Promise<ReturnReponse<any>> {
+  login(data: IReqSignIn): Promise<ReturnReponse<IResLogin>> {
     const url = "default/login"; //params
 
     return axiosClient.post(url, data);
@@ -14,10 +19,14 @@ const authApi = {
     const url = "default/info"; //params
     return axiosClient.get(url);
   },
-  // signup(data: IReqSignUp): Promise<ReturnReponse<IResLogin>> {
-  //   const url = "default/login"; //params
-  //   return axiosClient.post(url, data);
-  // },
+  getOTP(data: IReqGetOTP): Promise<ReturnReponse<IResGetOTP>> {
+    const url = "default/otp";
+    return axiosClient.post(url, data);
+  },
+  signup(data: IReqSignUp): Promise<ReturnReponse<any>> {
+    const url = "default/signUp";
+    return axiosClient.post(url, data);
+  },
 };
 
 export default authApi;

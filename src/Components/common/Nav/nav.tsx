@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import ModalSignIn from "../../../Pages/SignIn/ModalSignIn";
 import ModalSignUp from "../../../Pages/SignUp/ModalSignUp/SignUp";
-import ModalSignUpByEmail from "../../../Pages/SignUp/ModalSignUp/SignUpByEmail";
 import useAuth from "../../../store/auth";
 import { ContainerModal } from "../ContainerModal";
 
@@ -14,12 +13,10 @@ const Nav = () => {
   const [showSignUpModal, setSignUpModal] = React.useState(false);
   const openSignUpModal = () => setSignUpModal(true);
   const closeSignUpModal = () => setSignUpModal(false);
-  const [showSignUpByEmailModal, setSignUpByEmailModal] = React.useState(false);
-  const openSignUpByEmailModal = () => setSignUpByEmailModal(true);
-  const closeSignUpByEmailModal = () => setSignUpByEmailModal(false);
   const handleLogout = () => {
     actionAuth.logoutAsync();
   };
+
   const location = useLocation();
   return (
     <div className="container-fluid mb-5">
@@ -221,15 +218,6 @@ const Nav = () => {
         <ModalSignUp
           closeModal={closeSignUpModal}
           openSignInModal={openSignInModal}
-        />
-      </ContainerModal>
-      <ContainerModal
-        isVisible={showSignUpByEmailModal}
-        closeModal={closeSignUpByEmailModal}
-      >
-        <ModalSignUpByEmail
-          closeModal={closeSignUpByEmailModal}
-          openSignUpModal={openSignUpModal}
         />
       </ContainerModal>
     </div>

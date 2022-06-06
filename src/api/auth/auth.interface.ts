@@ -8,7 +8,10 @@ export interface IReqEmailOtp {
 }
 
 export interface IReqSignUp {
-  email: string;
+  email_or_phone: string;
   password: string;
   code: string;
+}
+export interface IReqGetOTP {
+  email_or_phone: string;
 }

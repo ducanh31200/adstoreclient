@@ -119,7 +119,7 @@ const ModalSignIn = (props: Props) => {
                 OTP
               </label>
             </div>
-            <div className="form-group link-forgot">
+            <div className="link-forgot">
               <a href="#" style={{ color: "#47c0d0 " }}>
                 Forgot password
               </a>
