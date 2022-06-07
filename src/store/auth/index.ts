@@ -10,12 +10,20 @@ import { selector } from "./auth.selector";
 
 export type State = {
   isLoggedIn: boolean;
-  data: any;
+  data: {
+    msg: string;
+    data: any;
+    accessToken: string;
+  };
 };
 
 const initialState: State = {
   isLoggedIn: false,
-  data: {},
+  data: {
+    msg: "",
+    data: {},
+    accessToken: "",
+  },
 };
 
 const actions = {

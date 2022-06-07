@@ -11,17 +11,19 @@ import Contact from "../Pages/contact/Contact";
 
 function Router() {
   return (
-    <BrowserRouter>
-      <Switch>
-        <PrivateRoute path="/" component={HomePage} exact />
-        <PrivateRoute path="/product" component={Product} exact />
-        <PrivateRoute path="/product/:name" component={Product} exact />
-        <PrivateRoute path="/productDetail" component={ProductDetail} exact />
-        <PrivateRoute path="/cart" component={Cart} exact />
-        <PrivateRoute path="/bill" component={Bill} exact />
-        <PrivateRoute path="/contact" component={Contact} exact />
-      </Switch>{" "}
-    </BrowserRouter>
+    <Switch>
+      <PrivateRoute path="/" component={HomePage} exact />
+      <PrivateRoute path="/product" component={Product} exact />
+      <PrivateRoute path="/product/:name" component={Product} exact />
+      <PrivateRoute
+        path="/product/:category/:id"
+        component={ProductDetail}
+        exact
+      />
+      <PrivateRoute path="/cart" component={Cart} exact />
+      <PrivateRoute path="/bill" component={Bill} exact />
+      <PrivateRoute path="/contact" component={Contact} exact />
+    </Switch>
   );
 }
 

@@ -1,8 +1,8 @@
 export const defaultRoute = {
   homepage: "/",
   product: "/product",
-  productOfCategory: "/product/:name",
-  productDetail: "/productDetail",
+  productCategory: "/product/:name",
+  productDetail: "/product/:category/:id",
   contact: "/contact",
   bill: "/bill",
   cart: "/cart",

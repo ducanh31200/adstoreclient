@@ -6,10 +6,18 @@ import product4 from "../../img/macbook.jpg";
 import product5 from "../../img/applewatch.jpg";
 import payment from "../../img/payments.png";
 import user from "../../img/user.jpg";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Nav from "../../Components/common/Nav/nav";
 type Props = {};
 const ProductDetail = (props: Props) => {
+  const params = useParams<any>();
+  console.log("params", params);
+  const { name } = params;
+  React.useEffect(() => {
+    if (name) {
+      // API have name here
+    }
+  }, []);
   return (
     <div>
       <div className="container-fluid">

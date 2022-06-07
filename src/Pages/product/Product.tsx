@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import productApi from "../../api/product/productApi";
 import Nav from "../../Components/common/Nav/nav";
 import product7 from "../../img/airpods.jpg";
 import product5 from "../../img/applewatch.jpg";
@@ -13,13 +14,18 @@ import product2 from "../../img/samsungs22.jpg";
 type Props = { name: string; id: string };
 const Product = (props: Props) => {
   const params = useParams<any>();
+  const [listProduct, setListProduct] = useState<Array<any>>([]);
   console.log("params", params);
-  const { name } = params;
-  React.useEffect(() => {
-    if (name) {
-      // API have name here
-    }
-  }, []);
+  const { nameCategory } = params;
+  // React.useEffect(() => {
+  //   (async () => {
+  //     if (nameCategory) {
+  //       const list = await productApi.productCategory({ name: nameCategory });
+  //       console.log(list);
+  //       setListProduct(list.data.data);
+  //     }
+  //   })();
+  // }, []);
 
   return (
     <div>

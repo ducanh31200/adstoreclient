@@ -9,9 +9,10 @@ interface Props {
   closeModal: () => void;
   openSignInModal: () => void;
 }
-// const history = useHistory();
+
 const ModalSignUp = (props: Props) => {
   const [authState, actionAuth] = useAuth();
+  const history = useHistory();
   const { register, handleSubmit, reset } = useForm();
   const { closeModal, openSignInModal } = props;
 
@@ -24,7 +25,7 @@ const ModalSignUp = (props: Props) => {
     const emailSignUp = (document.getElementById("email") as HTMLInputElement)
       .value;
     if (emailSignUp === "") {
-      handleSubmit;
+      handleSubmit(submit);
       return;
     } else {
       const mess = await actionAuth.getOTPAsync({
@@ -33,7 +34,6 @@ const ModalSignUp = (props: Props) => {
       mess
         ? notifySuccess(mess)
         : notifyError("Gửi mã OTP thất bại, vui lòng thử lại !");
-      console.log("resOTP", mess);
     }
   };
 
@@ -44,8 +44,10 @@ const ModalSignUp = (props: Props) => {
 
     if (!result) notifyError("Sai tài khoản hoặc mật khẩu");
     else {
-      notifySuccess("Đăng nhập thành công");
-      // history.push("/");
+      reset();
+      notifySuccess("Đăng ký thành công");
+      closeModal();
+      history.push("/");
     }
   };
   return (

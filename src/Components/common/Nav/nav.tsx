@@ -160,14 +160,14 @@ const Nav = () => {
                     <i className="fa-solid fa-user " />
                     &emsp;
                     <span>
-                      {stateAuth.data?.name
-                        ? stateAuth.data.name
-                        : stateAuth.data?.email
-                        ? stateAuth.data.email.substring(
+                      {stateAuth.data.data?.name
+                        ? stateAuth.data.data.name
+                        : stateAuth.data.data?.email
+                        ? stateAuth.data.data.email.substring(
                             0,
-                            stateAuth.data.email.lastIndexOf("@")
+                            stateAuth.data.data.email.lastIndexOf("@")
                           )
-                        : stateAuth.data?.phone}
+                        : stateAuth.data.data?.phone}
                     </span>
                     <div className="wrap_contentHover">
                       <div className="contentHover py-[16px]">

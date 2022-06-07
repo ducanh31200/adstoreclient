@@ -18,12 +18,12 @@ import {
   FAKE_PRODUCT_DATA,
   CAROUSEL_ITEMS,
 } from "../../constants/base.constants";
-import { ProductCard } from "../../Components/common/ContainerModal";
 
 import useAuth from "../../store/auth";
 import Nav from "../../Components/common/Nav/nav";
 import { Carousel } from "../../Components/common/Carousel/Carousel";
 import categoryApi from "../../api/category/category";
+import { ProductCard } from "../../Components/common/Product/ProductCard";
 
 const HomePage = () => {
   const [listCategory, setListCategory] = useState<Array<any>>([]);
