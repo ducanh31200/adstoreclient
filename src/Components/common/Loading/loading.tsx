@@ -10,35 +10,31 @@ export const LoadingLMS = (props: LoadingProps) => {
     return (
       <div className="loadingContainer">
         <span className="loader">
-          <span className="loader-text">M</span>
-          <span className="loader-inner"></span>
-        </span>
-        <span className="loader">
           <span className="loader-text">A</span>
           <span className="loader-inner"></span>
         </span>
         <span className="loader">
-          <span className="loader-text">R</span>
-          <span className="loader-inner"></span>
-        </span>
-        <span className="loader">
-          <span className="loader-text">K</span>
-          <span className="loader-inner"></span>
-        </span>
-        <span className="loader">
-          <span className="loader-text">E</span>
-          <span className="loader-inner"></span>
-        </span>
-        <span className="loader">
-          <span className="loader-text">T</span>
-          <span className="loader-inner"></span>
-        </span>
-        <span className="loader">
-          <span className="loader-text">H</span>
-          <span className="loader-inner"></span>
-        </span>
-        <span className="loader">
           <span className="loader-text">D</span>
+          <span className="loader-inner"></span>
+        </span>
+        <span className="loader">
+          <span className="loader-text">S</span>
+          <span className="loader-inner"></span>
+        </span>
+        <span className="loader">
+          <span className="loader-text">t</span>
+          <span className="loader-inner"></span>
+        </span>
+        <span className="loader">
+          <span className="loader-text">o</span>
+          <span className="loader-inner"></span>
+        </span>
+        <span className="loader">
+          <span className="loader-text">r</span>
+          <span className="loader-inner"></span>
+        </span>
+        <span className="loader">
+          <span className="loader-text">e</span>
           <span className="loader-inner"></span>
         </span>
       </div>
