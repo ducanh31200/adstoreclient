@@ -24,7 +24,6 @@ const ModalSignUp = (props: Props) => {
   const handleGetOTP = async () => {
     const emailSignUp = (document.getElementById("email") as HTMLInputElement)
       .value;
-
     if (emailSignUp === "") {
       handleSubmit(submit);
       return;
@@ -40,22 +39,15 @@ const ModalSignUp = (props: Props) => {
 
   const submit = async (data: any, e: any) => {
     e.preventDefault();
-    const pass = (document.getElementById("pass") as HTMLInputElement).value;
-    const confirmPass = (
-      document.getElementById("confirm-pass") as HTMLInputElement
-    ).value;
-    if (pass === confirmPass) {
-      const result = await actionAuth.signUpAsync(data);
 
-      if (!result) notifyError("Sai tài khoản hoặc mật khẩu");
-      else {
-        reset();
-        notifySuccess("Đăng ký thành công");
-        closeModal();
-        history.push("/");
-      }
-    } else {
-      notifyError("Mật khẩu xác nhận không khớp, vui lòng nhập lại !");
+    const result = await actionAuth.signUpAsync(data);
+
+    if (!result) notifyError("Sai tài khoản hoặc mật khẩu");
+    else {
+      reset();
+      notifySuccess("Đăng ký thành công");
+      closeModal();
+      history.push("/");
     }
   };
   return (

@@ -4,7 +4,6 @@ import ModalSignIn from "../../../Pages/SignIn/ModalSignIn";
 import ModalSignUp from "../../../Pages/SignUp/ModalSignUp/SignUp";
 import useAuth from "../../../store/auth";
 import { ContainerModal } from "../ContainerModal";
-import ModalInfo from "../PersonalInfo/ModalInfo/personalInfo";
 
 const Nav = () => {
   const [stateAuth, actionAuth] = useAuth();
@@ -14,9 +13,6 @@ const Nav = () => {
   const [showSignUpModal, setSignUpModal] = React.useState(false);
   const openSignUpModal = () => setSignUpModal(true);
   const closeSignUpModal = () => setSignUpModal(false);
-  const [showInfoModal, setInfoModal] = React.useState(false);
-  const openInfoModal = () => setInfoModal(true);
-  const closeInfoModal = () => setInfoModal(false);
   const handleLogout = () => {
     actionAuth.logoutAsync();
   };
@@ -176,13 +172,15 @@ const Nav = () => {
                     <div className="wrap_contentHover">
                       <div className="contentHover py-[16px]">
                         <Link
-                          to="/"
-                          onClick={openInfoModal}
+                          to="/personal"
                           className="menuProfile menuLinkHover"
                         >
                           Thông tin cá nhân
                         </Link>
-                        <Link to="/" className="menuProfile menuLinkHover">
+                        <Link
+                          to="/thong-tin-ca-nhan"
+                          className="menuProfile menuLinkHover"
+                        >
                           Tin nhắn
                         </Link>
                         <div className="lineMenu"></div>
@@ -215,9 +213,6 @@ const Nav = () => {
           closeModal={closeSignInModal}
           openSignUpModal={openSignUpModal}
         />
-      </ContainerModal>
-      <ContainerModal isVisible={showInfoModal} closeModal={closeInfoModal}>
-        <ModalInfo closeModal={closeInfoModal} />
       </ContainerModal>
       <ContainerModal isVisible={showSignUpModal} closeModal={closeSignUpModal}>
         <ModalSignUp

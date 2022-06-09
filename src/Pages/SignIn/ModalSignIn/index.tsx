@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useHistory } from "react-router-dom";
 import useAuth from "../../../store/auth";
-import { notifyError, notifySuccess } from "../../../utils/notify";
 import "./style.css";
 
 interface Props {
@@ -31,23 +30,7 @@ const ModalSignIn = (props: Props) => {
       history.push("/");
     }
   };
-  const handleGetOTP = async () => {
-    const email_phone = (
-      document.getElementById("email-or-phone") as HTMLInputElement
-    ).value;
 
-    if (email_phone === "") {
-      handleSubmit(submit);
-      return;
-    } else {
-      const mess = await actionAuth.getOTPAsync({
-        email_or_phone: email_phone,
-      });
-      mess
-        ? notifySuccess(mess)
-        : notifyError("Gửi mã OTP thất bại, vui lòng thử lại !");
-    }
-  };
   const handleGetValue = (e: any) => {
     const value = e.target.value;
     setloginType(value);
@@ -75,7 +58,6 @@ const ModalSignIn = (props: Props) => {
                 </span>
               </div>
               <input
-                id="email-or-phone"
                 type="text"
                 className="form-control"
                 placeholder="Email/Phone"
@@ -106,15 +88,10 @@ const ModalSignIn = (props: Props) => {
                     className="form-control"
                     placeholder="OTP"
                     aria-describedby="basic-addon1"
-                    {...register("code")}
+                    {...register("password")}
                     required
                   />
-                  <a
-                    className="btn btn-primary btn-get-otp"
-                    onClick={handleGetOTP}
-                  >
-                    Get OTP
-                  </a>
+                  <a className="btn btn-primary btn-get-otp">Get OTP</a>
                 </>
               )}
             </div>
